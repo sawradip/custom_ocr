@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <title>Upload Page</title>
+
+{% endblock title %}
+
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Upload Image Here</legend>
+            <div class="form-group">
+                {{ form.company_name.label(class="form-control-label") }}
+                {% if form.company_name.errors %}
+                    {{ form.company_name(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.company_name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.company_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.report_img_file.label() }}<br>
+                {{ form.report_img_file(class="form-control-file") }}<br>
+                {% if form.report_img_file.errors %}
+                    {% for error in form.report_img_file.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.comment.label(class="form-control-label") }}
+
+                {{ form.comment(class="form-control form-control-lg") }}
+
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.upload(class="btn btn-outline-info") }}
+        </div>
+
+    </form>
+</div>
+{% endblock content %}

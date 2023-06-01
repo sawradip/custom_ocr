@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {% if search_term %}
+        <title>Search - {{ search_term }}</title>
+    {% else %}
+        <title>Search</title>
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.search_box(class="form-control form-control-lg") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.search(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+    {% if results %}
+        <hr>
+        <h1>Search Results:</h1>
+
+        <div class="gallery">
+            {% for result in results %}
+            <a href="{{result.get('img_path')}}" data-lightbox="mygallery"><img src="{{result.get('img_path')}}" ></a>
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <h2>Search Something</h2>
+    {% endif %}
+
+
+{% endblock content %}
