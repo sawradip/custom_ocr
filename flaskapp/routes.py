@@ -77,7 +77,7 @@ def search():
             # print(os.path.join(TEMP_FOLDER, entry.report_img_name).replace(app.root_path, ''))
             result_entries.append(result)
 
-        return render_template('search.html', results = result_entries, form = form)
+        return render_template('search.html', results = result_entries, form = form, search_term = search_query)
     return render_template('search.html',  form = form)
 
 # @app.route("/login")
